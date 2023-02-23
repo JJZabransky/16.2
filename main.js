@@ -10,12 +10,20 @@ class Zamestnanec {
     }
 }
 
+const progressBar = document.getElementById('bar');
+
 function Load() {
 const req = new XMLHttpRequest();
 req.open("GET", "https://datausa.io/api/data?drilldowns=Nation&measures=Population");
-let zamestnanci = JSON.parse(this.responseText);
-console.log(zamestnanci);
+req.onload = function() {
+    let zamestnanci = JSON.parse(this.responseText);
+    console.log(zamestnanci);
+    localStorage.setItem("zamestnanci", JSON.stringify(zamestnanci.data));
+}
 req.send();
 }
 Load();
 
+function Progress(e) {
+    
+}
